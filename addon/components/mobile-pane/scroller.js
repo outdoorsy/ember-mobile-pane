@@ -9,8 +9,7 @@ import Tween from 'ember-mobile-core/tween';
 
 export default Component.extend(RecognizerMixin, {
   layout,
-  classNames: ['mobile-pane__scroller'],
-  attributeBindings: ['style'],
+  tagName: '',
 
   // public
   overScrollFactor: 0.34, // between 0 and 1

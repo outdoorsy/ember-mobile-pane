@@ -61,13 +61,30 @@ export default Component.extend(ComponentParentMixin, {
     onDragStart(){
       set(this, 'isDragging', true);
     },
+    
     onDragMove(dx){
       set(this, 'dx', dx);
     },
+
     onDragEnd(activeIndex){
       set(this, 'isDragging', false);
       set(this, 'activeIndex', activeIndex);
       set(this, 'dx', 0);
+    },
+
+    onPrevious(activeIndex){
+
+      // don't advance if at the beginning
+      if (get(this, 'activeIndex') <= 0) { return; }
+      set(this, 'activeIndex', activeIndex - 1);
+    },
+
+    onNext(activeIndex){
+
+      // don't advance if at the end
+      if (get(this, 'activeIndex') >= Math.floor(get(this, 'paneCount') -1)) { return; }
+
+      set(this, 'activeIndex', activeIndex + 1);
     }
   },
 

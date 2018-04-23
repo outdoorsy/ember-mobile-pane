@@ -14,6 +14,16 @@
     currentOffset=currentOffset
     onClick=(action 'changePane')
   )
+  previous=(component 'mobile-pane/previous'
+    paneCount=paneCount
+    activeIndex=activeIndex
+    onClick=(action 'onPrevious')
+  )
+  next=(component 'mobile-pane/next'
+    paneCount=paneCount
+    activeIndex=activeIndex
+    onClick=(action 'onNext')
+  )
   scroller=(component 'mobile-pane/scroller'
     activeIndex=activeIndex
     lazyRendering=_lazyRendering
