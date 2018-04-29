@@ -5,7 +5,7 @@ import layout from '../../templates/components/mobile-pane/next';
 export default Component.extend({
   layout,
 
-  tagMane: '',
+  tagName: '',
 
   // public
 

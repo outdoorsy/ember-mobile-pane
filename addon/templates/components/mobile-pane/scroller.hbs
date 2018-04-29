@@ -1,14 +1,12 @@
-<div class="mobile-pane__wrapper">
-  <div class="mobile-pane__scroller" style={{style}}>
-    {{yield (hash
-      pane=(component 'mobile-pane/pane'
-        lazyRendering=lazyRendering
-        keepRendered=keepRendered
+<div class="mobile-pane__scroller" style={{style}}>
+  {{yield (hash
+    pane=(component 'mobile-pane/pane'
+      lazyRendering=lazyRendering
+      keepRendered=keepRendered
 
-        activePane=activePane
-        paneCount=paneCount
-        visiblePanes=visiblePanes
-      )
-    )}}
-  </div>
+      activePane=activePane
+      paneCount=paneCount
+      visiblePanes=visiblePanes
+    )
+  )}}
 </div>
