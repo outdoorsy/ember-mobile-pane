@@ -6,6 +6,8 @@ import { computed, get, set } from '@ember/object';
 import Pane from 'ember-mobile-pane/components/mobile-pane/pane';
 import ComponentParentMixin from 'ember-mobile-pane/mixins/component-parent';
 
+import { inject as service } from '@ember/service';
+
 import { htmlSafe } from '@ember/string';
 import { next } from '@ember/runloop';
 
@@ -13,6 +15,8 @@ import { next } from '@ember/runloop';
 
 export default Component.extend(ComponentParentMixin, {
   layout,
+
+  fastboot: service(),
 
   classNames: ['mobile-pane'],
   classNameBindings: [
@@ -61,7 +65,7 @@ export default Component.extend(ComponentParentMixin, {
     onDragStart(){
       set(this, 'isDragging', true);
     },
-    
+
     onDragMove(dx){
       set(this, 'dx', dx);
     },
@@ -94,10 +98,16 @@ export default Component.extend(ComponentParentMixin, {
 
   _lazyRendering: computed.or('lazyRendering', 'strictLazyRendering'),
 
-  paneContainerElement: computed.readOnly('element'),
+  paneContainerElement: computed('element', function() {
+    if(this.get('fastboot.isFastBoot')) { return; }
+
+    return get(this, 'element');
+  }),
+  
   panes: computed.filter('children', function(view) {
     return view instanceof Pane;
   }),
+
   paneCount: computed('panes.length', function(){
     return get(this, 'panes.length');
   }),
