@@ -9,7 +9,7 @@ import Tween from 'ember-mobile-core/tween';
 
 export default Component.extend(RecognizerMixin, {
   layout,
-  
+
   classNames: ['mobile-pane__wrapper'],
 
   // public
@@ -38,7 +38,7 @@ export default Component.extend(RecognizerMixin, {
   onDragEnd(activeIndex){},
 
   style: computed('paneCount', 'currentOffset', function(){
-    let style  = `width: ${get(this, 'paneCount') * 100}%;`;
+    let style  = `width: ${get(this, 'paneCount') * 100}%; `;
 
     style += `transform: translateX(${get(this, 'currentOffset')}%)`;
 

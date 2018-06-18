@@ -103,7 +103,7 @@ export default Component.extend(ComponentParentMixin, {
 
     return get(this, 'element');
   }),
-  
+
   panes: computed.filter('children', function(view) {
     return view instanceof Pane;
   }),
