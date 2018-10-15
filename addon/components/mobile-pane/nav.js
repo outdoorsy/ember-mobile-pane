@@ -8,8 +8,13 @@ import ComponentParentMixin from 'ember-mobile-pane/mixins/component-parent';
 import NavItem from 'ember-mobile-pane/components/mobile-pane/nav/item';
 import Tween from 'ember-mobile-core/tween';
 
+import { inject as service } from '@ember/service';
+
 export default Component.extend(ComponentParentMixin, {
   layout,
+
+  fastboot: service(),
+
   tagName: 'nav',
 
   classNames: ['mobile-pane__nav'],
@@ -59,6 +64,9 @@ export default Component.extend(ComponentParentMixin, {
   ),
 
   _updateStyle(){
+    
+    if (this.get('fastboot.isFastboot')) { return; }
+
     const activeIndex     = get(this, 'activeIndex');
     const childNavItems   = get(this, 'childNavItems');
     const element         = get(this, 'element');

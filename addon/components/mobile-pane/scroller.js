@@ -9,8 +9,8 @@ import Tween from 'ember-mobile-core/tween';
 
 export default Component.extend(RecognizerMixin, {
   layout,
-  classNames: ['mobile-pane__scroller'],
-  attributeBindings: ['style'],
+
+  classNames: ['mobile-pane__wrapper'],
 
   // public
   overScrollFactor: 0.34, // between 0 and 1
@@ -38,7 +38,7 @@ export default Component.extend(RecognizerMixin, {
   onDragEnd(activeIndex){},
 
   style: computed('paneCount', 'currentOffset', function(){
-    let style  = `width: ${get(this, 'paneCount') * 100}%;`;
+    let style  = `width: ${get(this, 'paneCount') * 100}%; `;
 
     style += `transform: translateX(${get(this, 'currentOffset')}%)`;
 

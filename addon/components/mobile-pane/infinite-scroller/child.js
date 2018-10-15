@@ -1,7 +1,8 @@
-import Component from '@ember/component';
-import layout from '../../../templates/components/mobile-pane/infinite-scroller/child';
-import { get, computed } from '@ember/object';
 import { htmlSafe } from '@ember/string';
+import Component from '@ember/component';
+import { get, computed } from '@ember/object';
+import { getOwner } from '@ember/application';
+import layout from '../../../templates/components/mobile-pane/infinite-scroller/child';
 
 export default Component.extend({
   layout,
