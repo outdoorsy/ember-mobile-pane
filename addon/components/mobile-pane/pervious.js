@@ -23,6 +23,9 @@ export default Component.extend({
     onClick(activeIndex){
       if (get(this, 'isDisabled')) { return; }
 
+      event.stopPropagation();
+      event.preventDefault();
+
       get(this, 'onClick')(activeIndex);
     }
   }
