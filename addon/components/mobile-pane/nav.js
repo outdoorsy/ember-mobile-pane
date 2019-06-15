@@ -1,8 +1,9 @@
 import Component from '@ember/component';
 import layout from '../../templates/components/mobile-pane/nav';
+import { getOwner } from '@ember/application';
 
 import { computed, get, set, observer } from '@ember/object';
-import { next, once } from '@ember/runloop';
+import { once } from '@ember/runloop';
 
 import ComponentParentMixin from 'ember-mobile-pane/mixins/component-parent';
 import NavItem from 'ember-mobile-pane/components/mobile-pane/nav/item';
@@ -12,8 +13,6 @@ import { inject as service } from '@ember/service';
 
 export default Component.extend(ComponentParentMixin, {
   layout,
-
-  fastboot: service(),
 
   tagName: 'nav',
 
@@ -34,6 +33,10 @@ export default Component.extend(ComponentParentMixin, {
   indicator: null,
   initialRender: true,
   runningAnimation: null,
+
+  fastboot: computed(function() {
+    return getOwner(this).lookup('service:fastboot');
+  }),
 
   /**
    * Fired when a nav item is clicked
@@ -64,7 +67,7 @@ export default Component.extend(ComponentParentMixin, {
   ),
 
   _updateStyle(){
-    
+
     if (this.get('fastboot.isFastboot')) { return; }
 
     const activeIndex     = get(this, 'activeIndex');

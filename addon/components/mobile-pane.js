@@ -1,27 +1,24 @@
 import Component from '@ember/component';
 import layout from '../templates/components/mobile-pane';
-
+import { getOwner } from '@ember/application';
 import { computed, get, set } from '@ember/object';
 
 import Pane from 'ember-mobile-pane/components/mobile-pane/pane';
 import ComponentParentMixin from 'ember-mobile-pane/mixins/component-parent';
-
-import { inject as service } from '@ember/service';
-
-import { htmlSafe } from '@ember/string';
-import { next } from '@ember/runloop';
 
 //TODO: delay (normal) lazyRendering until after the animation has completed to prevent stutter
 
 export default Component.extend(ComponentParentMixin, {
   layout,
 
-  fastboot: service(),
-
   classNames: ['mobile-pane'],
   classNameBindings: [
     'isDragging:mobile-pane--dragging',
   ],
+
+  fastboot: computed(function() {
+    return getOwner(this).lookup('service:fastboot');
+  }),
 
   init(){
     this._super(...arguments);
