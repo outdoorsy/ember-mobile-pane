@@ -20,10 +20,12 @@ export default Component.extend({
   }),
 
   actions: {
-    onClick(activeIndex){
+    onClick(activeIndex, evt){
+      evt.stopPropagation();
       if (get(this, 'isDisabled')) { return; }
 
       get(this, 'onClick')(activeIndex);
+      return false;
     }
   }
 });
