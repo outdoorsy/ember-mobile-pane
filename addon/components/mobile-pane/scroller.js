@@ -6,6 +6,7 @@ import { htmlSafe } from '@ember/string';
 
 import RecognizerMixin from 'ember-mobile-core/mixins/pan-recognizer';
 import Tween from 'ember-mobile-core/tween';
+import { assert }  from '@ember/debug';
 
 export default Component.extend(RecognizerMixin, {
   layout,
@@ -32,6 +33,24 @@ export default Component.extend(RecognizerMixin, {
   dx: 0,
   dxStart: 0,
   runningAnimation: null,
+
+  // catch errors from pan-recognizer mixin; log but don't throw in production
+  didTouchMove() {
+    try {
+      this._super(...arguments)
+    } catch (error) {
+      assert(error);
+      console.error(error);
+    }
+  },
+  didTouchEnd() {
+    try {
+      this._super(...arguments)
+    } catch (error) {
+      assert(error);
+      console.error(error);
+    }
+  },
 
   onDragStart(){},
   onDragMove(dx){},
